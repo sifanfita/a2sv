@@ -1,24 +1,22 @@
+from collections import defaultdict
+
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        s_count = Counter(s)
-        length = 0
-        odd_found = False
-
-        for count in s_count.values():
+        result = 0
+        odd_count = 0
+        my_dict = defaultdict(int)
+        for char in s:
+            my_dict[char] += 1
+        for count in my_dict.values():
             if count % 2 == 0:
-                length += count
+                result += count
             else:
-                length += count - 1
-                odd_found = True 
+                result += count - 1
+                odd_count = 1
 
-        if odd_found:
-            length += 1
+        return result + odd_count
+       
 
-        return length
+       
 
-
-
-                
-
-
-        
+       
